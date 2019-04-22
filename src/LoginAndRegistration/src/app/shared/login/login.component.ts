@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiClientService } from 'src/app/services/api-client.service';
 import { SR } from 'src/app/models/SR';
 
@@ -11,35 +10,25 @@ import { SR } from 'src/app/models/SR';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
   returnUrl: string;
-  loading = false;
-  submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private apiService: ApiClientService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private apiService: ApiClientService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     console.log('login--returnUrl:' + this.returnUrl);
   }
 
-  get f() { return this.loginForm.controls; }
-
-  async onSubmit() {
+  async onLogin(form:any) {
     console.log('onLogin--');
-    this.submitted = true;
 
     // stop here if form is invalid
-    if (this.loginForm.invalid) {
+    if (form.invalid) {
       return;
     }
 
-    var result = await this.apiService.LoginAsync(this.f.username.value, this.f.password.value);
+    var result = await this.apiService.LoginAsync(form.value.username, form.value.password);
     console.log('result--' + result);
 
     if (!result || result.trim() === '') {
@@ -61,5 +50,4 @@ export class LoginComponent implements OnInit {
     window.location.href = this.returnUrl;
     
   }
-
 }

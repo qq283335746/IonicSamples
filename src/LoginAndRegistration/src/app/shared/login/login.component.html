@@ -1,17 +1,26 @@
 
-<div class="loginBox">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <ion-item>
-          <ion-input type="text" placeholder="账号" formControlName="username" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="password" placeholder="密码" formControlName="password" required></ion-input>
-        </ion-item>
-      
-        <ion-button margin-top type="submit" expand="full" [disabled]="loginForm.invalid">登录</ion-button>
-        
-    </form>
-</div>
+ <form #form="ngForm" (ngSubmit)="onLogin(form)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>登 录</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="username" type="text" placeholder="账号" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="密码" ngModel required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">登 录</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 
 
 

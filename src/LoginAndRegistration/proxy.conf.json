@@ -1,0 +1,8 @@
+// {
+//     "/": {
+//         "target": "http://10.168.92.56:5000",
+//         "secure": false,
+//         "logLevel": "debug",
+//         "changeOrigin": true
+//     }
+// }

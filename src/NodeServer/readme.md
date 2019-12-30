@@ -9,3 +9,6 @@ npm install --save express body-parser sqlite3 bcryptjs jsonwebtoken cors
     "start": "node index.js"
 },
 npm start
+
+关于Git无法提交 index.lock的解决办法:
+解决办法：找到index.lock 删除即可
